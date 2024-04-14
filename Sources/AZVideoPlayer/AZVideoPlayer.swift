@@ -46,6 +46,8 @@ public struct AZVideoPlayer: UIViewControllerRepresentable {
         controller.showsPlaybackControls = showsPlaybackControls
         controller.entersFullScreenWhenPlaybackBegins = entersFullScreenWhenPlaybackBegins
         controller.delegate = context.coordinator
+        controller.allowsPictureInPicturePlayback = true
+        controller.canStartPictureInPictureAutomaticallyFromInline = true
         return controller
     }
     
