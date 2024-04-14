@@ -1,6 +1,6 @@
 # AZVideoPlayer
 
-The `VideoPlayer` provided by `SwiftUI` out of the box is great but it's missing one very important feature: full screen presentation mode. `AZVideoPlayer` behaves pretty much exactly like `VideoPlayer`, but adds the button that's provided by `AVPlayerViewController` to go full screen.
+The `VideoPlayer` provided by `SwiftUI` out of the box is great but it's missing one very important feature: full screen presentation mode. `AZVideoPlayer` behaves pretty much exactly like `VideoPlayer`, but adds the button that's provided by `AVPlayerViewController` to go full screen. This fork includes PIP support.
 
 ### Basic Usage
 
