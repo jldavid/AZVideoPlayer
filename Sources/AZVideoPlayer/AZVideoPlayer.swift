@@ -61,10 +61,7 @@ public struct AZVideoPlayer: UIViewControllerRepresentable {
         controller.player = player
         print("updateUIViewController")
         print("allowsPictureInPicturePlayback changed to \(allowsPictureInPicturePlayback)")
-        if allowsPictureInPicturePlayback {
-            print("allowsPictureInPicturePlayback changed to \(allowsPictureInPicturePlayback)")
-            controller.allowsPictureInPicturePlayback = allowsPictureInPicturePlayback
-        }
+        controller.allowsPictureInPicturePlayback = allowsPictureInPicturePlayback
     }
     
     public func makeCoordinator() -> Coordinator {
