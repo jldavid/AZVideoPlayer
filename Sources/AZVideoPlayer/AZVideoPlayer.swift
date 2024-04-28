@@ -40,8 +40,8 @@ public struct AZVideoPlayer: UIViewControllerRepresentable {
         self.willBeginFullScreenPresentationWithAnimationCoordinator = willBeginFullScreenPresentationWithAnimationCoordinator
         self.willEndFullScreenPresentationWithAnimationCoordinator = willEndFullScreenPresentationWithAnimationCoordinator
         self.statusDidChange = statusDidChange
-        self.allowsPictureInPicturePlayback = allowsPictureInPicturePlayback
         self.showsPlaybackControls = showsPlaybackControls
+        self.allowsPictureInPicturePlayback = allowsPictureInPicturePlayback
         self.entersFullScreenWhenPlaybackBegins = entersFullScreenWhenPlaybackBegins
         self.pausesWhenFullScreenPlaybackEnds = pausesWhenFullScreenPlaybackEnds
     }
