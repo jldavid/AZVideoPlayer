@@ -23,7 +23,7 @@ public struct AZVideoPlayer: UIViewControllerRepresentable {
     let willEndFullScreenPresentationWithAnimationCoordinator: TransitionCompletion?
     let statusDidChange: StatusDidChange?
     let showsPlaybackControls: Bool
-    let allowsPictureInPicturePlayback: Bool
+    @Binding var allowsPictureInPicturePlayback: Bool
     let entersFullScreenWhenPlaybackBegins: Bool
     let pausesWhenFullScreenPlaybackEnds: Bool
     
