@@ -10,6 +10,7 @@ import SwiftUI
 import AVKit
 
 public struct AZVideoPlayer: UIViewControllerRepresentable {
+    
     public typealias TransitionCompletion = (
         AVPlayerViewController, UIViewControllerTransitionCoordinator
     ) -> Void
@@ -24,18 +25,22 @@ public struct AZVideoPlayer: UIViewControllerRepresentable {
     let showsPlaybackControls: Bool
     let entersFullScreenWhenPlaybackBegins: Bool
     let pausesWhenFullScreenPlaybackEnds: Bool
+
+    @Binding var allowsPictureInPicturePlayback: Bool
     
     public init(player: AVPlayer?,
                 willBeginFullScreenPresentationWithAnimationCoordinator: TransitionCompletion? = nil,
                 willEndFullScreenPresentationWithAnimationCoordinator: TransitionCompletion? = nil,
                 statusDidChange: StatusDidChange? = nil,
                 showsPlaybackControls: Bool = true,
+                allowsPictureInPicturePlayback: Bool = true,
                 entersFullScreenWhenPlaybackBegins: Bool = false,
                 pausesWhenFullScreenPlaybackEnds: Bool = false) {
         self.player = player
         self.willBeginFullScreenPresentationWithAnimationCoordinator = willBeginFullScreenPresentationWithAnimationCoordinator
         self.willEndFullScreenPresentationWithAnimationCoordinator = willEndFullScreenPresentationWithAnimationCoordinator
         self.statusDidChange = statusDidChange
+        self.allowsPictureInPicturePlayback = allowsPictureInPicturePlayback
         self.showsPlaybackControls = showsPlaybackControls
         self.entersFullScreenWhenPlaybackBegins = entersFullScreenWhenPlaybackBegins
         self.pausesWhenFullScreenPlaybackEnds = pausesWhenFullScreenPlaybackEnds
@@ -46,13 +51,16 @@ public struct AZVideoPlayer: UIViewControllerRepresentable {
         controller.showsPlaybackControls = showsPlaybackControls
         controller.entersFullScreenWhenPlaybackBegins = entersFullScreenWhenPlaybackBegins
         controller.delegate = context.coordinator
-        controller.allowsPictureInPicturePlayback = true
+        controller.allowsPictureInPicturePlayback = allowsPictureInPicturePlayback
         controller.canStartPictureInPictureAutomaticallyFromInline = true
         return controller
     }
     
     public func updateUIViewController(_ controller: AVPlayerViewController, context: Context) {
         controller.player = player
+        if allowsPictureInPicturePlayback {
+            controller.allowsPictureInPicturePlayback = allowsPictureInPicturePlayback
+        }
     }
     
     public func makeCoordinator() -> Coordinator {
