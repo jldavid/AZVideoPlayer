@@ -121,19 +121,19 @@ public struct AZVideoPlayer: UIViewControllerRepresentable {
             }
         }
         
-        func playerViewControllerWillStartPictureInPicture(_ playerViewController: AVPlayerViewController) {
+        public func playerViewControllerWillStartPictureInPicture(_ playerViewController: AVPlayerViewController) {
             debugPrint("playerViewControllerWillStartPictureInPicture")
         }
                 
-        func playerViewControllerDidStartPictureInPicture(_ playerViewController: AVPlayerViewController) {
+        public func playerViewControllerDidStartPictureInPicture(_ playerViewController: AVPlayerViewController) {
             debugPrint("playerViewControllerDidStartPictureInPicture")
         }
                 
-        func playerViewControllerWillStopPictureInPicture(_ playerViewController: AVPlayerViewController) {
+        public func playerViewControllerWillStopPictureInPicture(_ playerViewController: AVPlayerViewController) {
             debugPrint("playerViewControllerWillStopPictureInPicture")
         }
                 
-        func playerViewControllerDidStopPictureInPicture(_ playerViewController: AVPlayerViewController) {
+        public func playerViewControllerDidStopPictureInPicture(_ playerViewController: AVPlayerViewController) {
             debugPrint("playerViewControllerDidStopPictureInPicture")
         }
         
