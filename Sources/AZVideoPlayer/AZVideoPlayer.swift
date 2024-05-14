@@ -12,7 +12,7 @@ import AVKit
 public struct AZVideoPlayer: UIViewControllerRepresentable {
     
     public typealias TransitionCompletion = (AVPlayerViewController, UIViewControllerTransitionCoordinator) -> Void
-    public typealias PipCompletion = (AVPlayerController) -> Void
+    public typealias PipCompletion = (AVPlayerViewController) -> Void
     public typealias Volume = Float
     public typealias StatusDidChange = (AZVideoPlayerStatus) -> Void
     
