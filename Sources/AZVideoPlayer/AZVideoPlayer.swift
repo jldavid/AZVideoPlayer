@@ -95,6 +95,8 @@ public struct AZVideoPlayer: UIViewControllerRepresentable {
             })
         }
         
+        public func playerViewController(
+        
         public func playerViewController(_ playerViewController: AVPlayerViewController,
                                          willBeginFullScreenPresentationWithAnimationCoordinator coordinator: UIViewControllerTransitionCoordinator) {
             parent.willBeginFullScreenPresentationWithAnimationCoordinator?(playerViewController, coordinator)
@@ -118,5 +120,22 @@ public struct AZVideoPlayer: UIViewControllerRepresentable {
                 }
             }
         }
+        
+        func playerViewControllerWillStartPictureInPicture(_ playerViewController: AVPlayerViewController) {
+            debugPrint("playerViewControllerWillStartPictureInPicture")
+        }
+                
+        func playerViewControllerDidStartPictureInPicture(_ playerViewController: AVPlayerViewController) {
+            debugPrint("playerViewControllerDidStartPictureInPicture")
+        }
+                
+        func playerViewControllerWillStopPictureInPicture(_ playerViewController: AVPlayerViewController) {
+            debugPrint("playerViewControllerWillStopPictureInPicture")
+        }
+                
+        func playerViewControllerDidStopPictureInPicture(_ playerViewController: AVPlayerViewController) {
+            debugPrint("playerViewControllerDidStopPictureInPicture")
+        }
+        
     }
 }
