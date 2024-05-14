@@ -11,9 +11,8 @@ import AVKit
 
 public struct AZVideoPlayer: UIViewControllerRepresentable {
     
-    public typealias TransitionCompletion = (
-        AVPlayerViewController, UIViewControllerTransitionCoordinator
-    ) -> Void
+    public typealias TransitionCompletion = (AVPlayerViewController, UIViewControllerTransitionCoordinator) -> Void
+    public typealias PipCompletion = (AVPlayerController) -> Void
     public typealias Volume = Float
     public typealias StatusDidChange = (AZVideoPlayerStatus) -> Void
     
@@ -26,12 +25,20 @@ public struct AZVideoPlayer: UIViewControllerRepresentable {
     var allowsPictureInPicturePlayback: Bool
     let entersFullScreenWhenPlaybackBegins: Bool
     let pausesWhenFullScreenPlaybackEnds: Bool
+    let playerViewControllerWillStartPictureInPicture: PipCompletion?
+    let playerViewControllerDidStartPictureInPicture: PipCompletion?
+    let playerViewControllerWillStopPictureInPicture: PipCompletion?
+    let playerViewControllerDidStopPictureInPicture: PipCompletion?
     
     //@Binding var allowsPictureInPicturePlayback: Bool
     
     public init(player: AVPlayer?,
                 willBeginFullScreenPresentationWithAnimationCoordinator: TransitionCompletion? = nil,
                 willEndFullScreenPresentationWithAnimationCoordinator: TransitionCompletion? = nil,
+                playerViewControllerWillStartPictureInPicture: PipCompletion? = nil,
+                playerViewControllerDidStartPictureInPicture: PipCompletion? = nil,
+                playerViewControllerWillStopPictureInPicture: PipCompletion? = nil,
+                playerViewControllerDidStopPictureInPicture: PipCompletion? = nil,
                 statusDidChange: StatusDidChange? = nil,
                 showsPlaybackControls: Bool = true,
                 allowsPictureInPicturePlayback: Bool = true,
@@ -40,6 +47,10 @@ public struct AZVideoPlayer: UIViewControllerRepresentable {
         self.player = player
         self.willBeginFullScreenPresentationWithAnimationCoordinator = willBeginFullScreenPresentationWithAnimationCoordinator
         self.willEndFullScreenPresentationWithAnimationCoordinator = willEndFullScreenPresentationWithAnimationCoordinator
+        self.playerViewControllerWillStartPictureInPicture = playerViewControllerWillStartPictureInPicture
+        self.playerViewControllerDidStartPictureInPicture = playerViewControllerDidStartPictureInPicture
+        self.playerViewControllerWillStopPictureInPicture = playerViewControllerWillStopPictureInPicture
+        self.playerViewControllerDidStopPictureInPicture = playerViewControllerDidStopPictureInPicture
         self.statusDidChange = statusDidChange
         self.showsPlaybackControls = showsPlaybackControls
         self.allowsPictureInPicturePlayback = allowsPictureInPicturePlayback
@@ -121,18 +132,22 @@ public struct AZVideoPlayer: UIViewControllerRepresentable {
         
         public func playerViewControllerWillStartPictureInPicture(_ playerViewController: AVPlayerViewController) {
             debugPrint("playerViewControllerWillStartPictureInPicture")
+            parent.playerViewControllerWillStartPictureInPicture?(playerViewController)
         }
                 
         public func playerViewControllerDidStartPictureInPicture(_ playerViewController: AVPlayerViewController) {
             debugPrint("playerViewControllerDidStartPictureInPicture")
+            parent.playerViewControllerDidStartPictureInPicture?(playerViewController)
         }
                 
         public func playerViewControllerWillStopPictureInPicture(_ playerViewController: AVPlayerViewController) {
             debugPrint("playerViewControllerWillStopPictureInPicture")
+            parent.playerViewControllerWillStopPictureInPicture?(playerViewController)
         }
                 
         public func playerViewControllerDidStopPictureInPicture(_ playerViewController: AVPlayerViewController) {
             debugPrint("playerViewControllerDidStopPictureInPicture")
+            parent.playerViewControllerDidStopPictureInPicture?(playerViewController)
         }
         
     }
