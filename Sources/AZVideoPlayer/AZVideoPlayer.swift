@@ -95,8 +95,6 @@ public struct AZVideoPlayer: UIViewControllerRepresentable {
             })
         }
         
-        public func playerViewController(
-        
         public func playerViewController(_ playerViewController: AVPlayerViewController,
                                          willBeginFullScreenPresentationWithAnimationCoordinator coordinator: UIViewControllerTransitionCoordinator) {
             parent.willBeginFullScreenPresentationWithAnimationCoordinator?(playerViewController, coordinator)
